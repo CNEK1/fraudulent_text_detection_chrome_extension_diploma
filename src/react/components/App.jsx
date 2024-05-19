@@ -22,17 +22,14 @@ const App = () => {
     const response = await chrome.tabs.sendMessage(tab.id, {
       NPLAPI: "someTab",
     });
-    setScriptResp(response);
+    // Check the response array for fraud detection
+    const message = response.includes(1)
+      ? "Fraudulent message detected"
+      : "No fraudulent message detected";
+    setScriptResp(message);
     setLoading(false);
   };
 
-  // Function to interpret the response
-  const interpretResponse = (response) => {
-    if (response.length === 0) {
-      return "No response yet";
-    }
-    return response[0] === 0 ? "Not fraudulent" : "Fraudulent";
-  };
   return (
     <div className={styles.app}>
       <h1>Text Analysis Tool</h1>
@@ -40,7 +37,7 @@ const App = () => {
         Analyze text
       </Button>
       <h2>Text analysis results</h2>
-      <p>{loading ? <Spinner /> : interpretResponse(scriptResp)}</p>
+      <p>{loading ? <Spinner /> : scriptResp}</p>
     </div>
   );
 };
