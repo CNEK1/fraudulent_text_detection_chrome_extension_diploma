@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Scam Sweeper",
+  "description": "Protect yourself from online scams with Scam Sweeper, a Chrome extension powered by AI.",
+  "version": "1.0.0",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "permissions": ["tabs", "activeTab"],
+  "host_permissions": ["http://*/*", "https://*/"]
+}
