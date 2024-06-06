@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (selectedText && selectedText.toString().trim() !== "") {
         try {
           await axios
-            .post("http://127.0.0.1:8000/polls/", {
+            .post("https://dzherela.com/textFraud/", {
               text: selectedText.toString(),
             })
             .then((tabResp) => {
@@ -29,3 +29,4 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   })();
   return true;
 });
+
